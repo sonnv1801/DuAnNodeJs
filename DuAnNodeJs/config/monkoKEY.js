@@ -1,0 +1,2 @@
+// module.exports = "mongodb+srv://LoginAndSignUp:nguyenvanson123@cluster0.uien8.mongodb.net/LoginAndSignUp?retryWrites=true&w=majority";
+module.exports = "mongodb+srv://NguyenVanSon47788:NguyenVanSon47788@cluster0.uien8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
