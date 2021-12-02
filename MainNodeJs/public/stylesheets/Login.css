@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&display=swap');
+body{
+    font-family: 'PT Sans Narrow', sans-serif;
+    background-image: url("../images/nen.png")
+}
+.signupl{
+    color: rgb(0, 255, 170);
+}
+.Homepage{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+.Homepagelink{
+    padding-top: 2rem;
+}
+.login{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+.card{
+    margin: auto;
+    width: 640px;
+    height: 450px;
+    background-color: rgb(204, 230, 204);
+    box-shadow: 1px 1px 5px 5px rgb(94, 92, 92);
+    border-radius: 1rem;
+}
+.card .logininformation{
+    text-align: center;
+}
+.card .logininformation h3{
+    padding-top: 2rem;
+    color: green;
+}
+.card .logininformation h6{
+    padding-top: 1rem;
+    color: red;
+}
+
+.mginput{
+    margin: auto;
+    padding-top: 1rem;
+    width: 400px;
+}
+
+.mginbutton{
+    padding-top: 1rem;
+}
+.mginbutton{
+    margin-top: 1.5rem;
+    width: 100%;
+    height: 20px;
+}
+.mginbutton input{
+    width: 50%;
+}
+.signup{
+    padding-top: 3rem;
+}
+.msg{
+    width: 50%;
+    text-align: center;
+    margin: auto;
+    height: 60px;
+}
+.msgl{
+    padding-top: 1rem;
+}
