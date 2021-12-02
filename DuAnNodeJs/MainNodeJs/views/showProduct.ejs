@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Sản Phẩm</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/products"
+                >Trang Chủ</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/pro"
+              ><i class="fa fa-cart-plus shopingCart" style="font-size: 24px"
+                >0</i
+              ></a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="font-weight-bold">Show</h4>
+          </div>
+          <div class="card" style="width: 18rem">
+            <img
+              src="<%= ketqua.name %>"
+              class="card-img-top image"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title name"><%= ketqua._id %></h5>
+              <p class="card-text price"><%= ketqua.data %></p>
+              <button class="btn btn-primary addToCart">Mua</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const btn = document.getElementsByClassName("addToCart");
+
+      const products = [];
+
+      for (var i = 0; i < btn.length; i++) {
+        let cartBtn = btn[i];
+        cartBtn.addEventListener("click", () => {
+          let product = {
+            image: event.target.parentElement.parentElement.children[0].src,
+            name: event.target.parentElement.parentElement.children[1]
+              .children[0].textContent,
+            price:
+              event.target.parentElement.parentElement.children[1].children[1]
+                .textContent,
+            totalPrice: parseInt(
+              event.target.parentElement.parentElement.children[1].children[1]
+                .textContent
+            ),
+            quantity: 1,
+          };
+          addItemToLocal(product);
+        });
+      }
+
+      function addItemToLocal(product) {
+        let cartItem = JSON.parse(localStorage.getItem("prdInCart"));
+        if (cartItem === null) {
+          products.push(product);
+          localStorage.setItem("prdInCart", JSON.stringify(products));
+        } else {
+          cartItem.forEach((item) => {
+            if (product.name == item.name) {
+              product.quantity = item.quantity += 1;
+              product.totalPrice = item.totalPrice += product.totalPrice;
+            } else {
+              products.push(item);
+            }
+          });
+          products.push(product);
+        }
+        localStorage.setItem("prdInCart", JSON.stringify(products));
+        window.location.reload();
+      }
+
+      function cartNumberDisplay() {
+        let cartNumbers = 0;
+        let cartItem = JSON.parse(localStorage.getItem("prdInCart"));
+        cartItem.forEach((item) => {
+          cartNumbers = item.quantity += cartNumbers;
+        });
+        document.querySelector(".shopingCart").textContent = cartNumbers;
+      }
+      cartNumberDisplay();
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
